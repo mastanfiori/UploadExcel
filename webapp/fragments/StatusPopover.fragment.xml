@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Popover id="myPopover" showHeader="false" placement="Right">
+		<VBox class="sapUiContentPadding">
+			<ObjectStatus class="sapMObjectStatusSmall sapUiSmallMargin" title="{i18n>Success}" text="{Status>/0/Success}" state="Success" icon="sap-icon://sys-enter-2"/>
+			<ObjectStatus class="sapMObjectStatusSmall sapUiSmallMargin" title="{i18n>Warnings}" text="{Status>/0/Warnings}" state="Warning" icon="sap-icon://alert"/>
+			<ObjectStatus class="sapMObjectStatusSmall sapUiSmallMargin" title="{i18n>Errors}" text="{Status>/0/Errors}" state="Error" icon="sap-icon://error"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

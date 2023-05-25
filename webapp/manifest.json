@@ -1,0 +1,169 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "com.itell.bradford.ZTRACKING_EXCEL_UPLD",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "875c9279-36a0-4476-bd7b-6589a0f6010d"
+        },
+        "dataSources": {
+            "ZSD_TRACKING_REPORT_CON_CDS": {
+                "uri": "/sap/opu/odata/sap/ZSD_TRACKING_REPORT_CON_CDS/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "FIN_USER_DEFAULTPARAMETER_SRV": {
+                "uri": "/sap/opu/odata/sap/FIN_USER_DEFAULTPARAMETER_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/FIN_USER_DEFAULTPARAMETER_SRV/metadata.xml"
+                }
+            },
+            "ZSD_TRACKING_MAINTENANCE_SRV": {
+                "uri": "/sap/opu/odata/sap/ZSD_TRACKING_MAINTENANCE_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/ZSD_TRACKING_MAINTENANCE_SRV/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "com.itell.bradford.ZTRACKING_EXCEL_UPLD.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "Upload"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "config": {
+            "sapFiori2Adaptation": true,
+            "fullWidth": "true"
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.itell.bradford.ZTRACKING_EXCEL_UPLD.i18n.i18n"
+                }
+            },
+            "ReportModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZSD_TRACKING_REPORT_CON_CDS",
+                "preload": true
+            },
+            "defaultValuesModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "FIN_USER_DEFAULTPARAMETER_SRV",
+                "preload": true
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZSD_TRACKING_MAINTENANCE_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "control/xlsx.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.itell.bradford.ZTRACKING_EXCEL_UPLD.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "Main",
+                    "pattern": "",
+                    "target": [
+                        "Upload"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetApp": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "App",
+                    "viewName": "App"
+                },
+                "Upload": {
+                    "viewType": "XML",
+                    "viewName": "Upload"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/ztrack_exlupld/webapp",
+        "_version": "1.1.0"
+    }
+}

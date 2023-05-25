@@ -1,0 +1,92 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:f="sap.f"
+	xmlns:sv="sap.ui.comp.smartvariants" xmlns:unified="sap.ui.unified" xmlns:table="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable"
+	controllerName="com.itell.bradford.ZTRACKING_EXCEL_UPLD.controller.Upload" xmlns:html="http://www.w3.org/1999/xhtml">
+	<semantic:FullscreenPage id="oSemanticPage" showNavButton="false" busyIndicatorDelay="0"
+		enableScrolling="true" floatingFooter="true" showFooter="true">
+		<semantic:subHeader>
+			<!-- class="sapFioriListReportPageOverflow" -->
+			<Bar>
+				<contentLeft>
+					<SegmentedButton id="idSB" selectedKey="MassDownload" selectionChange="onSegmentedButtonChange">
+						<items>
+							<SegmentedButtonItem text="{i18n>MassChanges}" key="MassDownload"/>
+							<SegmentedButtonItem text="{i18n>MassUpload}" key="MassUpload"/>
+						</items>
+					</SegmentedButton>
+				</contentLeft>
+			</Bar>
+		</semantic:subHeader>
+		<semantic:content>
+			<!--<VBox>-->
+				<NavContainer id="navCon" class="navContainerControl sapUiSmallMarginBottom">
+					<pages>
+						<f:DynamicPage id="MassDownloadPage" class="sapUiNoContentPadding">
+							<f:title>
+								<f:DynamicPageTitle>
+									<f:heading>
+										<sv:SmartVariantManagement id="__SVM03" persistencyKey="com.itell.bradford.ZTRACKING_EXCEL_UPLD.view.Report" showShare="false"
+											entitySet="ZSD_TRACKING_REPORT_CON" showExecuteOnSelection="false"></sv:SmartVariantManagement>
+									</f:heading>
+								</f:DynamicPageTitle>
+							</f:title>
+							<!--DynamicPage Header-->
+							<f:header>
+								<f:DynamicPageHeader pinnable="false">
+									<f:content>
+										<VBox>
+											<core:Fragment fragmentName="com.itell.bradford.ZTRACKING_EXCEL_UPLD.fragments.MassChangesFilterBar" type="XML"></core:Fragment>
+										</VBox>
+									</f:content>
+								</f:DynamicPageHeader>
+							</f:header>
+							<f:content>
+								<core:Fragment fragmentName="com.itell.bradford.ZTRACKING_EXCEL_UPLD.fragments.MassChangesTrackingReport" type="XML"></core:Fragment>
+							</f:content>
+						</f:DynamicPage>
+						<f:DynamicPage id="UploadPage" class="sapUiNoContentPadding">
+							<!--DynamicPage Header-->
+							<f:header>
+								<f:DynamicPageHeader pinnable="true">
+									<f:content>
+										<!--<VBox>-->
+											<Panel>
+												<FlexBox id="flexBox" alignItems="Center" height="4rem" justifyContent="Center">
+													<Label text="{i18n>SalesOrganization}" required="true"></Label>
+													<Input id="inpSalesOrg" value="{clearModel>/SalesOrg}" width="70%" showSuggestion="true" showValueHelp="true"
+														valueHelpRequest="handleValueHelpSalesOrg" suggestionRows="{salesOrgCollection>/}" change="handleSalesOrgChange">
+														<suggestionColumns>
+															<Column demandPopin="true" popinDisplay="Inline" hAlign="Begin"><Label text="{i18n>SalesOrg}"/></Column>
+															<Column demandPopin="true" popinDisplay="Inline" hAlign="Center" minScreenWidth="Tablet"><Label text="{i18n>Desc}"/></Column>
+														</suggestionColumns>
+														<suggestionRows>
+															<ColumnListItem>
+																<cells><Label text="{salesOrgCollection>Vkorg}"/><Label text="{salesOrgCollection>Vtext}"/></cells>
+															</ColumnListItem>
+														</suggestionRows>
+													</Input>
+													<unified:FileUploader id="Uploader" name="postingExcelUpload" width="400px" tooltip="{i18n>SelectFile}" change="onFileChange"
+														icon="sap-icon://open-folder" uploadStart="uploadStart" class="sapUiSmallMarginEnd" uploadComplete="handleUploadComplete"
+														uploadAborted="handleUploadAborted" fileAllowed="onFileAllowed" fileType="csv,xlsx" sendXHR="true" sameFilenameAllowed="false"
+														uploadOnChange="false" useMultipart="true" placeholder="{i18n>UploadHint}"/>
+													<Button text="{i18n>Upload}" press="onUpload"></Button>
+													<Button text="{i18n>Clear}" press="onUploadFileClear" class="buttonMarginLeft"></Button>
+												</FlexBox>
+											</Panel>
+										<!--</VBox>-->
+									</f:content>
+								</f:DynamicPageHeader>
+							</f:header>
+							<f:content>
+								<core:Fragment fragmentName="com.itell.bradford.ZTRACKING_EXCEL_UPLD.fragments.TrackingReport" type="XML"></core:Fragment>
+							</f:content>
+						</f:DynamicPage>
+					</pages>
+				</NavContainer>
+			<!--</VBox>-->
+		</semantic:content>
+		<semantic:customFooterContent>
+			<Button text="{i18n>Check}" press="onCheck" type="Emphasized"/>
+			<Button id="SaveBtn" text="{i18n>Save}" press="onSave" enabled="{clearModel>/SaveButtonEnable}" type="Emphasized"/>
+		</semantic:customFooterContent>
+	</semantic:FullscreenPage>
+</mvc:View>

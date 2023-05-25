@@ -1,0 +1,88 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSD_TRACKING_MAINTENANCE_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="MaterialHelp" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/></Key><Property Name="Maktg" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Spras" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="SalesOrgHelp" sap:content-version="1">
+				<Key><PropertyRef Name="Vkorg"/></Key><Property Name="Hide" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Hide in Input Help" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Org." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vtext" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PanelCodeHelp" sap:content-version="1">
+				<Key><PropertyRef Name="SalesOrg"/><PropertyRef Name="Material"/><PropertyRef Name="PanelArea"/><PropertyRef Name="PanelCode"/></Key><Property Name="SalesOrg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Org." sap:updatable="false"
+					sap:sortable="false"/><Property Name="PanelDes" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Panel Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:updatable="false"
+					sap:sortable="false"/><Property Name="PanelArea" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Panel Area" sap:updatable="false"
+					sap:sortable="false"/><Property Name="PanelCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Panel code" sap:updatable="false"
+					sap:sortable="false"/></EntityType>
+			<EntityType Name="TrackMaintHead" sap:content-version="1">
+				<Key><PropertyRef Name="Trackingcode"/></Key><Property Name="ButtonFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false"/><Property Name="Trackingcode" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Tracking Code"/><NavigationProperty Name="TrackingMaintNav" Relationship="ZSD_TRACKING_MAINTENANCE_SRV.TrackingMaintAsso"
+					FromRole="FromRole_TrackingMaintAsso" ToRole="ToRole_TrackingMaintAsso"/></EntityType>
+			<EntityType Name="TrackMaintItem" sap:content-version="1">
+				<Key><PropertyRef Name="Trackingcode"/></Key><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Internalid" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Key" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Salesorganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sales Org."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Trackingcode" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Tracking Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Panelarea" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Panel Area" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mvgr1" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="MaterialGroup 1"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Panelcode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Panel Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Trackingdescription" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Tracking Description"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Maildate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Mail Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mailqty" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Mail Quantity"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Listkeysegment" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="List Key Segment"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mailnumber" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Mail Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ttlmailqty" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="Total Mail Quantity"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Pulldate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Pull Date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mailingjobnbr" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Mail Job Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Offertrackingcode" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Offer Tracking Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Offertrackingcount" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Offer Tracking Count"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Reportbreak" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Report Break"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Catalogid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Catalog ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mailingclass" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Mailing Class"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Planid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Plan ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Promoid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Promo ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Tmpltlinenbr" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="3" sap:unicode="false"
+					sap:label="Template Line Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mergelinenr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Merger Liner"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Segmentcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Segment Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="SubSegmentcode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Sub Segment"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Offerseqnbr" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="3" sap:unicode="false"
+					sap:label="Offer Sequence Numbe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mpoid" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="MPO ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Prelimoffercode" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Prelim Offer Code"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PostToPromoPlanCtr" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Post To Promo Plan"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="IsdSellEntityCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Corporation associat"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ProcessOfferTye" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Process Offer Type"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Subplanindicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Sub Plan Indicator"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Subplanid" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Sub Plan ID"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Publicationnbr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Pub.No."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Adnumber" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Ad.Numb." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Formcode" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Form Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Textid" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Text ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Createdbyuser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created by User"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Creationdate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Creation Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Creationtime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Creation Time"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Changeuser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Change User"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Changedate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Change Date"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Changetime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Change Time" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="TrackingMaintAsso" sap:content-version="1"><End Type="ZSD_TRACKING_MAINTENANCE_SRV.TrackMaintHead" Multiplicity="0..1" Role="FromRole_TrackingMaintAsso"/><End Type="ZSD_TRACKING_MAINTENANCE_SRV.TrackMaintItem" Multiplicity="*" Role="ToRole_TrackingMaintAsso"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_TrackingMaintAsso"><PropertyRef Name="Trackingcode"/></Principal>
+					<Dependent Role="ToRole_TrackingMaintAsso"><PropertyRef Name="Trackingcode"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZSD_TRACKING_MAINTENANCE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="MaterialHelpSet" EntityType="ZSD_TRACKING_MAINTENANCE_SRV.MaterialHelp" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="SalesOrgHelpSet" EntityType="ZSD_TRACKING_MAINTENANCE_SRV.SalesOrgHelp" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PanelCodeHelpSet" EntityType="ZSD_TRACKING_MAINTENANCE_SRV.PanelCodeHelp" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="TrackMaintHeadSet" EntityType="ZSD_TRACKING_MAINTENANCE_SRV.TrackMaintHead" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="TrackMaintItemSet" EntityType="ZSD_TRACKING_MAINTENANCE_SRV.TrackMaintItem" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="TrackingMaintAssoSet" Association="ZSD_TRACKING_MAINTENANCE_SRV.TrackingMaintAsso" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="TrackMaintHeadSet" Role="FromRole_TrackingMaintAsso"/><End EntitySet="TrackMaintItemSet" Role="ToRole_TrackingMaintAsso"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSD_TRACKING_MAINTENANCE_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSD_TRACKING_MAINTENANCE_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

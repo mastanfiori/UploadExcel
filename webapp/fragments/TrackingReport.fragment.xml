@@ -1,0 +1,369 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:table="sap.ui.table" xmlns:smartTable="sap.ui.comp.smarttable">
+	<smartTable:SmartTable id="TrackSmartTab" class="sapUiSizeCompact sapUiMediumMarginBeginEnd" showFullScreenButton="false"
+		entitySet="TrackMaintItemSet" useExportToExcel="true" exportType="UI5Client" useVariantManagement="true" beforeRebindTable="onRebindTable"
+		useTablePersonalisation="true" tableType="ResponsiveTable" tableBindingPath="trackingList>/"
+		persistencyKey="SmartTabPanelMaintenance_ExcelUPLD" enableAutoBinding="true" visible="true" showRowCount="false"
+		beforeExport="onMassUploadExcelExport"
+		ignoredFields="MergeLineNumber,FormCode,MailNumber,TextID,PublicationNumber,AdNumber,OfferTrackingCode,OfferTrackingCount,PullDate,MailingClass,TotalMailQuantity,MailJobNumber,SalesOrganization,Planversionnum,internalid,ListKeySegment,Mpoid,Prelimoffercode,PostToPromoPlanCtr,IsdSellEntityCode,ProcessOfferTye,Subplanindicator,Subplanid,Publicationnbr,Createdbyuser,CreationDate,Creationtime,Changeuser,ChangeDate,Changetime">
+		<smartTable:customToolbar>
+			<OverflowToolbar design="Transparent">
+				<Text text="Tracking Codes ({=${trackingList>/}.length})"/>
+				<core:Icon src="sap-icon://information" press="onStatusCount"></core:Icon>
+				<ToolbarSpacer/>
+				<Button text="{i18n>Download}" press="onExcelTemplateDownload" type="Transparent"></Button>
+				<Button id="DeleteBtn" text="{i18n>Delete}" press="onDelete" type="Transparent" enabled="false"/>
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+		<table:Table id="TrackingUITab" editable="false" enableColumnFreeze="true" selectionMode="Single" rowSelectionChange="onRowSelection">
+			<table:rowSettingsTemplate>
+				<table:RowSettings highlight="{trackingList>UIMessageStatus}"/>
+			</table:rowSettingsTemplate>
+			<table:columns>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>RecordStatus}" sortProperty="RecordStatus">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "RecordStatus", "leadingProperty": "RecordStatus"}'/>
+					</table:customData>
+					<Label text="{i18n>RecordStatus}"/>
+					<table:template>
+						<Text text="{trackingList>RecordStatus}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="100px" tooltip="{i18n>MessageStatus}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "UIMessageStatus", "leadingProperty": "UIMessageStatus"}'/>
+					</table:customData>
+					<Label text="{i18n>MessageStatus}"/>
+					<table:template>
+						<Text text="{trackingList>UIMessageStatus}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="300px" tooltip="{i18n>Msg}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "UIMessage", "leadingProperty": "UIMessage"}'/>
+					</table:customData>
+					<Label text="{i18n>Msg}"/>
+					<table:template>
+						<Text text="{trackingList>UIMessage}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="200px" tooltip="{i18n>SalesOrganization}" sortProperty="SalesOrganization">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "SalesOrganization", "leadingProperty": "SalesOrganization"}'/>
+					</table:customData>
+					<Label text="{i18n>SalesOrganization}"/>
+					<table:template>
+						<Text text="{trackingList>SalesOrganization}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>TrackingCode}" sortProperty="TrackingCode" filterProperty="TrackingCode">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "TrackingCode", "leadingProperty": "TrackingCode"}'/>
+					</table:customData>
+					<Label text="{i18n>TrackingCode}"/>
+					<table:template>
+						<Text text="{trackingList>TrackingCode}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>Material}" sortProperty="Material" filterProperty="Material">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "Material", "leadingProperty": "Material"}'/>
+					</table:customData>
+					<Label text="{i18n>Material}"/>
+					<table:template>
+						<Text text="{trackingList>Material}" wrapping="true"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="250px" tooltip="{i18n>MaterialDescription}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "MaterialDescription", "leadingProperty": "MaterialDescription"}'/>
+					</table:customData>
+					<Label text="{i18n>MaterialDescription}"/>
+					<table:template>
+						<Text text="{trackingList>MaterialDescription}" wrapping="true"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="200px" tooltip="{i18n>TrackingDescription}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "TrackingDescription", "leadingProperty": "TrackingDescription"}'/>
+					</table:customData>
+					<Label text="{i18n>TrackingDescription}"/>
+					<table:template>
+						<Text text="{trackingList>TrackingDescription}" wrapping="true"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>MarketArea}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "MarketArea", "leadingProperty": "MarketArea"}'/>
+					</table:customData>
+					<Label text="{i18n>MarketArea}"/>
+					<table:template>
+						<Text text="{trackingList>MarketArea}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>AgedTrackingCode}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "AgedTrackingCode", "leadingProperty": "AgedTrackingCode"}'/>
+					</table:customData>
+					<Label text="{i18n>AgedTrackingCode}"/>
+					<table:template>
+						<Text text="{path:'trackingList>AgedTrackingCode'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>CTN}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "CTN", "leadingProperty": "CTN"}'/>
+					</table:customData>
+					<Label text="{i18n>CTN}"/>
+					<table:template>
+						<Text text="{path:'trackingList>CTN' }"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>WEBOEFlag}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "WEBOEFlag", "leadingProperty": "WEBOEFlag"}'/>
+					</table:customData>
+					<Label text="{i18n>WEBOEFlag}"/>
+					<table:template>
+						<Text text="{path:'trackingList>WEBOEFlag' }"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>PanelCode}" sortProperty="PanelCode" filterProperty="PanelCode">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "PanelCode", "leadingProperty": "PanelCode"}'/>
+					</table:customData>
+					<Label text="{i18n>PanelCode}"/>
+					<table:template>
+						<Text text="{trackingList>PanelCode}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>PanelArea}" sortProperty="PanelArea" filterProperty="PanelArea">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "PanelArea", "leadingProperty": "PanelArea"}'/>
+					</table:customData>
+					<Label text="{i18n>PanelArea}"/>
+					<table:template>
+						<Text text="{trackingList>PanelArea}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="200px" tooltip="{i18n>PanelDescription}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "PanelDescription", "leadingProperty": "PanelDescription"}'/>
+					</table:customData>
+					<Label text="{i18n>PanelDescription}"/>
+					<table:template>
+						<Text text="{trackingList>PanelDescription}" wrapping="true"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>PromoID}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "PromoID", "leadingProperty": "PromoID"}'/>
+					</table:customData>
+					<Label text="{i18n>PromoID}"/>
+					<table:template>
+						<Text text="{path:'trackingList>PromoID'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>OfferSeqNbr}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "OfferSeqNumber", "leadingProperty": "OfferSeqNumber"}'/>
+					</table:customData>
+					<Label text="{i18n>OfferSeqNbr}"/>
+					<table:template>
+						<Text text="{path:'trackingList>OfferSeqNumber', formatter: '.oFormatter.formatFloat' }"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>PlanID}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "PlanID", "leadingProperty": "PlanID"}'/>
+					</table:customData>
+					<Label text="{i18n>PlanID}"/>
+					<table:template>
+						<Text text="{path:'trackingList>PlanID'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>TemplateLineNumber}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "TemplateLineNumber", "leadingProperty": "TemplateLineNumber"}'/>
+					</table:customData>
+					<Label text="{i18n>TemplateLineNumber}"/>
+					<table:template>
+						<Text text="{path:'trackingList>TemplateLineNumber', formatter: '.oFormatter.formatFloat' }"/>
+					</table:template>
+				</table:Column>
+				<!--<table:Column autoResizable="true" width="200px" tooltip="{i18n>MergeLineNumber}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "MergeLineNumber", "leadingProperty": "MergeLineNumber"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>MergeLineNumber}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{path:'trackingList>MergeLineNumber'}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>SegmentCode}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "SegmentCode", "leadingProperty": "SegmentCode"}'/>
+					</table:customData>
+					<Label text="{i18n>SegmentCode}"/>
+					<table:template>
+						<Text text="{path:'trackingList>SegmentCode'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>SubSegmentCode}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "SubSegmentCode", "leadingProperty": "SubSegmentCode"}'/>
+					</table:customData>
+					<Label text="{i18n>SubSegmentCode}"/>
+					<table:template>
+						<Text text="{path:'trackingList>SubSegmentCode'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>ReportBreak}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "ReportBreak", "leadingProperty": "ReportBreak"}'/>
+					</table:customData>
+					<Label text="{i18n>ReportBreak}"/>
+					<table:template>
+						<Text text="{path:'trackingList>ReportBreak'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>CatalogID}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "CatalogIDSlidingScaleID", "leadingProperty": "CatalogIDSlidingScaleID"}'/>
+					</table:customData>
+					<Label text="{i18n>CatalogID}"/>
+					<table:template>
+						<Text text="{path:'trackingList>CatalogIDSlidingScaleID'}"/>
+					</table:template>
+				</table:Column>
+				<!--<table:Column autoResizable="true" width="150px" tooltip="{i18n>OfferTrackingCode}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "OfferTrackingCode", "leadingProperty": "OfferTrackingCode"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>OfferTrackingCode}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>OfferTrackingCode}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>OfferTrackingCount}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "OfferTrackingCount", "leadingProperty": "OfferTrackingCount"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>OfferTrackingCount}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>OfferTrackingCount}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>PublicationNumber}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "PublicationNumber", "leadingProperty": "PublicationNumber"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>PublicationNumber}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>PublicationNumber}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" tooltip="{i18n>AdNumber}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "AdNumber", "leadingProperty": "AdNumber"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>AdNumber}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>AdNumber}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="200px" hAlign="Right" tooltip="{i18n>FormCode}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "FormCode", "leadingProperty": "FormCode"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>FormCode}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>FormCode}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="200px" tooltip="{i18n>TextID}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "TextID", "leadingProperty": "TextID"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>TextID}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>TextID}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>OnSaleMailDate}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "OnSaleMailDate", "leadingProperty": "OnSaleMailDate"}'/>
+					</table:customData>
+					<Label text="{i18n>OnSaleMailDate}"/>
+					<table:template>
+						<Text
+							text="{path:'trackingList>OnSaleMailDate', type: 'sap.ui.model.type.Date',formatOptions: { source: { pattern: 'MM/dd/yyyy' }, pattern: 'MM/dd/yyyy' } }"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>ActualCircMailQuantity}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "ActualCircMailQuantity", "leadingProperty": "ActualCircMailQuantity"}'/>
+					</table:customData>
+					<Label text="{i18n>ActualCircMailQuantity}"/>
+					<table:template>
+						<Text text="{path:'trackingList>ActualCircMailQuantity', formatter: '.oFormatter.formatFloat'}"/>
+					</table:template>
+				</table:Column>
+				<table:Column autoResizable="true" width="150px" tooltip="{i18n>AddCirc}">
+					<table:customData>
+						<core:CustomData key="p13nData" value='\{"columnKey": "AddCirc", "leadingProperty": "AddCirc"}'/>
+					</table:customData>
+					<Label text="{i18n>AddCirc}"/>
+					<table:template>
+						<Text text="{path:'trackingList>AddCirc'}"/>
+					</table:template>
+				</table:Column>
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>MailJobNumber}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "MailJobNumber", "leadingProperty": "MailJobNumber"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>MailJobNumber}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>MailJobNumber}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>MailNumber}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "MailNumber", "leadingProperty": "MailNumber"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>MailNumber}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>MailNumber}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>TotalMailQuantity}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "TotalMailQuantity", "leadingProperty": "TotalMailQuantity"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>TotalMailQuantity}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{path:'trackingList>TotalMailQuantity' , formatter: '.oFormatter.formatFloat'}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" hAlign="Right" tooltip="{i18n>MailingClass}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "MailingClass", "leadingProperty": "MailingClass"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>MailingClass}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text text="{trackingList>MailingClass}"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+				<!--<table:Column autoResizable="true" width="150px" tooltip="{i18n>PullDate}">-->
+				<!--	<table:customData>-->
+				<!--		<core:CustomData key="p13nData" value='\{"columnKey": "PullDate", "leadingProperty": "PullDate"}'/>-->
+				<!--	</table:customData>-->
+				<!--	<Label text="{i18n>PullDate}"/>-->
+				<!--	<table:template>-->
+				<!--		<Text-->
+				<!--			text="{path:'trackingList>PullDate', type: 'sap.ui.model.type.Date',formatOptions: { source: { pattern: 'MM/dd/yyyy' }, pattern: 'MM/dd/yyyy' } }"/>-->
+				<!--	</table:template>-->
+				<!--</table:Column>-->
+			</table:columns>
+		</table:Table>
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

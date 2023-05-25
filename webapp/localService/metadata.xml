@@ -1,0 +1,174 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSD_TRACKING_REPORT_CON_CDS" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="I_CompanyCodeStdVHType" sap:label="Company Code" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="CompanyCode"/></Key><Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="CompanyCodeName"
+					sap:label="Company Code"/><Property Name="CompanyCodeName" Type="Edm.String" MaxLength="25" sap:label="Company Name" sap:quickinfo="Name of Company Code or Company"/></EntityType>
+			<EntityType Name="I_Customer_VHType" sap:label="Value Help for Customer" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="Customer"/></Key><Property Name="Customer" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:text="CustomerName"
+					sap:label="Customer" sap:quickinfo="Customer Number"/><Property Name="OrganizationBPName1" Type="Edm.String" MaxLength="35" sap:label="Name 1"/><Property Name="OrganizationBPName2" Type="Edm.String" MaxLength="35" sap:label="Name 2"/><Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:quickinfo="Country Key"/><Property Name="CityName" Type="Edm.String" MaxLength="35" sap:label="City"/><Property Name="StreetName" Type="Edm.String" MaxLength="35" sap:label="Street" sap:quickinfo="Street and House Number"/><Property Name="CustomerName" Type="Edm.String" MaxLength="80" sap:label="Customer Name" sap:quickinfo="Name of Customer"/><Property Name="CustomerAccountGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Account group"
+					sap:quickinfo="Customer Account Group"/><Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization"
+					sap:quickinfo="Authorization Group"/><Property Name="IsBusinessPurposeCompleted" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Purpose Complete Flag"
+					sap:quickinfo="Business Purpose Completed Flag"/></EntityType>
+			<EntityType Name="I_MaterialTextType" sap:label="Material Text" sap:content-version="1">
+				<Key><PropertyRef Name="Material"/><PropertyRef Name="Language"/></Key><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"
+					sap:quickinfo="Material Number"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="MaterialName" Type="Edm.String" MaxLength="40" sap:label="Material description"/></EntityType>
+			<EntityType Name="I_SalesOrganizationType" sap:label="Sales Organization" sap:content-version="1">
+				<Key><PropertyRef Name="SalesOrganization"/></Key><Property Name="SalesOrganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase"
+					sap:text="SalesOrganization_Text" sap:label="Sales Organization"/><Property Name="SalesOrganization_Text" Type="Edm.String" MaxLength="20" sap:label="Sales Organization Description" sap:creatable="false"
+					sap:updatable="false"/><Property Name="SalesOrganizationCurrency" Type="Edm.String" MaxLength="5" sap:label="Statistics Currency"
+					sap:quickinfo="Statistics currency" sap:semantics="currency-code"/><Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code"
+					sap:quickinfo="Company code of the sales organization" sap:value-list="standard"/><Property Name="IntercompanyBillingCustomer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cust.Inter-Co.Bill."
+					sap:quickinfo="Customer number for intercompany billing" sap:value-list="standard"/></EntityType>
+			<EntityType Name="zsd_panel_b_cdsType" sap:label="Basic view of Panel cds" sap:content-version="1">
+				<Key><PropertyRef Name="PanelInternalID"/></Key><Property Name="PanelInternalID" Type="Edm.Guid" Nullable="false" sap:label="Key" sap:quickinfo="UUID serving as key (parent key, root key)"/><Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sales Organization"/><Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"
+					sap:quickinfo="Material Number"/><Property Name="PanelArea" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Panel Area"/><Property Name="PanelCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Panel Code"/><Property Name="PanelDescription" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Panel Description"/><Property Name="operatingentity" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Operating entity"/><Property Name="namesource" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Name Source"/><Property Name="category1" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Category 1"/><Property Name="category2" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Category 2"/><Property Name="category3" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Category 3"/><Property Name="category4" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Category 4"/><Property Name="category5" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Category 5"/><Property Name="mailtype" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Mail Type"/><Property Name="productprice" Type="Edm.Decimal" Precision="12" Scale="3" sap:label="Product Price"/><Property Name="promisedays" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Promise Days"/><Property Name="postagehandling" Type="Edm.Decimal" Precision="12" Scale="3" sap:label="Shipping and Service"
+					sap:quickinfo="Shipping and Services"/><Property Name="postagehandling2" Type="Edm.Decimal" Precision="12" Scale="3" sap:label="Shipping and Service 2"/><Property Name="purchaselimit" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Purchase Limit"/><Property Name="purchaselimit2" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Purchase Limit 2"/><Property Name="invallocationcode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Inventory Allocation"
+					sap:quickinfo="Inventory Allocation Code"/><Property Name="maildate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Mail Date"/><Property Name="numberofpayments" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Number of Payments"/><Property Name="addchargeswitch" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Additional Charges"/><Property Name="nubrpmtsbefore" Type="Edm.Decimal" Precision="2" Scale="0" sap:label="Number Before"/><Property Name="staticpromisedt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Static Promise Date"/><Property Name="subplanid" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Sub Plan ID"/><Property Name="createdbyuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by User"/><Property Name="creationdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creation Date"/><Property Name="creationtime" Type="Edm.Time" Precision="0" sap:label="Creation Time"/><Property Name="changeuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change User"/><Property Name="changedate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Change Date"/><Property Name="changetime" Type="Edm.Time" Precision="0" sap:label="Change Time"/><Property Name="MaterialCost" Type="Edm.Decimal" Precision="12" Scale="3" sap:unit="MaterialCurrency" sap:label="Moving price"
+					sap:quickinfo="Moving Average Price/Periodic Unit Price"/><Property Name="MaterialName" Type="Edm.String" MaxLength="40" sap:label="Material description"/><Property Name="MaterialCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:quickinfo="Currency Key"
+					sap:semantics="currency-code"/></EntityType>
+			<EntityType Name="zsd_promo_b_cdsType" sap:label="Basic view for promo cds" sap:content-version="1">
+				<Key><PropertyRef Name="promointernalid"/></Key><Property Name="promointernalid" Type="Edm.Guid" Nullable="false" sap:label="Key" sap:quickinfo="UUID serving as key (parent key, root key)"/><Property Name="PlanID" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Plan ID"/><Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sales Organization"/><Property Name="PromoID" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Promo ID"/><Property Name="OfferSeqNumber" Type="Edm.Decimal" Precision="6" Scale="3" sap:label="Offer Sequence Numbe"
+					sap:quickinfo="Offer Sequence Number"/><Property Name="TempletLineNumber" Type="Edm.Decimal" Precision="6" Scale="3" sap:label="Template Line Number"/><Property Name="finishedsku" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Finished SKU"/><Property Name="marketarea" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Market Area"/><Property Name="offersku" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Offer SKU"/><Property Name="segmentcode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Segment Code"/><Property Name="sub_segmentcode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sub Segment"
+					sap:quickinfo="Sub Segment Code"/><Property Name="circulationcount" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Circulate Counter"/><Property Name="createdbyuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by User"/><Property Name="creationdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creation Date"/><Property Name="creationtime" Type="Edm.Time" Precision="0" sap:label="Creation Time"/><Property Name="changeuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change User"/><Property Name="changedate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Change Date"/><Property Name="changetime" Type="Edm.Time" Precision="0" sap:label="Change Time"/></EntityType>
+			<EntityType Name="ZSD_TRACKING_REPORT_CONType" sap:label="Consumption view for Tracking Report" sap:content-version="1">
+				<Key><PropertyRef Name="internalid"/></Key><Property Name="internalid" Type="Edm.Guid" Nullable="false" sap:label="Key" sap:quickinfo="UUID serving as key (parent key, root key)"/><Property Name="SalesOrganization" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:filter-restriction="single-value"
+					sap:required-in-filter="false" sap:text="to_SalesOrganization/SalesOrganization_Text" sap:label="Sales Organization"
+					sap:value-list="standard"/><Property Name="trackingcode" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Tracking Code"/><Property Name="Material" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:filter-restriction="single-value"
+					sap:required-in-filter="false" sap:label="Material" sap:quickinfo="Material Number" sap:value-list="standard"/><Property Name="panelarea" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Panel Area"/><Property Name="mvgr1" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Material Group 1"
+					sap:quickinfo="Material group 1"/><Property Name="panelcode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Panel Code"/><Property Name="trackingdescription" Type="Edm.String" MaxLength="25" sap:label="Tracking Description"/><Property Name="maildate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Mail Date"/><Property Name="mailqty" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Mail Quantity"/><Property Name="listkeysegment" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="List Key Segment"/><Property Name="mailnumber" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Mail Number"/><Property Name="ttlmailqty" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Total Mail Quantity"/><Property Name="pulldate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Pull Date"/><Property Name="mailingjobnbr" Type="Edm.String" MaxLength="7" sap:display-format="UpperCase" sap:label="Mail Job Number"/><Property Name="offertrackingcode" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Offer Tracking Code"/><Property Name="offertrackingcount" Type="Edm.String" MaxLength="7" sap:display-format="UpperCase" sap:label="Offer Tracking Count"/><Property Name="reportbreak" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Report Break"/><Property Name="catalogid" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Catalog ID"/><Property Name="mailingclass" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Mailing Class"/><Property Name="planid" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Plan ID"/><Property Name="promoid" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Promo ID"/><Property Name="tmpltlinenbr" Type="Edm.Decimal" Precision="6" Scale="3" sap:label="Template Line Number"/><Property Name="mergelinenr" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Merger Liner"/><Property Name="segmentcode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Segment Code"/><Property Name="sub_segmentcode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sub Segment"
+					sap:quickinfo="Sub Segment Code"/><Property Name="offerseqnbr" Type="Edm.Decimal" Precision="6" Scale="3" sap:label="Offer Sequence Numbe"
+					sap:quickinfo="Offer Sequence Number"/><Property Name="mpoid" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="MPO ID"/><Property Name="prelimoffercode" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Prelim Offer Code"/><Property Name="post_to_promo_plan_ctr" Type="Edm.String" MaxLength="7" sap:display-format="UpperCase" sap:label="Post To Promo Plan"/><Property Name="isd_sell_entity_code" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Corporation associat"
+					sap:quickinfo="Corporation associated with promo planning"/><Property Name="process_offer_tye" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Process Offer Type"/><Property Name="subplanindicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Sub Plan Indicator"/><Property Name="subplanid" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Sub Plan ID"/><Property Name="publicationnbr" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Publication Number"/><Property Name="adnumber" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Ad Number" sap:quickinfo="Adnumber"/><Property Name="formcode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Form Code"/><Property Name="textid" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Text ID"/><Property Name="createdbyuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by User"/><Property Name="creationdate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Creation Date"/><Property Name="creationtime" Type="Edm.Time" Precision="0" sap:label="Creation Time"/><Property Name="changeuser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change User"/><Property Name="changedate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Change Date"/><Property Name="changetime" Type="Edm.Time" Precision="0" sap:label="Change Time"/><Property Name="maktx" Type="Edm.String" MaxLength="40" sap:label="Material description"/><Property Name="MaterialName" Type="Edm.String" MaxLength="40" sap:label="Material description"/><Property Name="PanelDescription" Type="Edm.String" MaxLength="25" sap:display-format="UpperCase" sap:label="Panel Description"/><NavigationProperty Name="to_MaterialText" Relationship="ZSD_TRACKING_REPORT_CON_CDS.assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"
+					FromRole="FromRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5" ToRole="ToRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"/><NavigationProperty Name="to_Panel" Relationship="ZSD_TRACKING_REPORT_CON_CDS.assoc_1075BFDFD8DC2F4E462754F132BE8405"
+					FromRole="FromRole_assoc_1075BFDFD8DC2F4E462754F132BE8405" ToRole="ToRole_assoc_1075BFDFD8DC2F4E462754F132BE8405"/><NavigationProperty Name="to_Promo" Relationship="ZSD_TRACKING_REPORT_CON_CDS.assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"
+					FromRole="FromRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA" ToRole="ToRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"/><NavigationProperty Name="to_SalesOrganization" Relationship="ZSD_TRACKING_REPORT_CON_CDS.assoc_E6A50C97BBDC62335C16B94EAD3A801C"
+					FromRole="FromRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C" ToRole="ToRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"/></EntityType>
+			<Association Name="assoc_1075BFDFD8DC2F4E462754F132BE8405" sap:content-version="1"><End Type="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType" Multiplicity="1" Role="FromRole_assoc_1075BFDFD8DC2F4E462754F132BE8405"/><End Type="ZSD_TRACKING_REPORT_CON_CDS.zsd_panel_b_cdsType" Multiplicity="1" Role="ToRole_assoc_1075BFDFD8DC2F4E462754F132BE8405"/></Association>
+			<Association Name="assoc_BB105557ABC20ED9C0200D2B7CF8D4DA" sap:content-version="1"><End Type="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType" Multiplicity="1" Role="FromRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"/><End Type="ZSD_TRACKING_REPORT_CON_CDS.zsd_promo_b_cdsType" Multiplicity="1" Role="ToRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"/></Association>
+			<Association Name="assoc_E6A50C97BBDC62335C16B94EAD3A801C" sap:content-version="1"><End Type="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType" Multiplicity="1" Role="FromRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"/><End Type="ZSD_TRACKING_REPORT_CON_CDS.I_SalesOrganizationType" Multiplicity="1" Role="ToRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"><PropertyRef Name="SalesOrganization"/></Principal>
+					<Dependent Role="FromRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"><PropertyRef Name="SalesOrganization"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_7E3B91D9034F5C432A0A8A9EA28E54A5" sap:content-version="1"><End Type="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType" Multiplicity="1" Role="FromRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"/><End Type="ZSD_TRACKING_REPORT_CON_CDS.I_MaterialTextType" Multiplicity="0..1" Role="ToRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"/></Association>
+			<EntityContainer Name="ZSD_TRACKING_REPORT_CON_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="I_CompanyCodeStdVH" EntityType="ZSD_TRACKING_REPORT_CON_CDS.I_CompanyCodeStdVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_Customer_VH" EntityType="ZSD_TRACKING_REPORT_CON_CDS.I_Customer_VHType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_MaterialText" EntityType="ZSD_TRACKING_REPORT_CON_CDS.I_MaterialTextType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="I_SalesOrganization" EntityType="ZSD_TRACKING_REPORT_CON_CDS.I_SalesOrganizationType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="zsd_panel_b_cds" EntityType="ZSD_TRACKING_REPORT_CON_CDS.zsd_panel_b_cdsType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="zsd_promo_b_cds" EntityType="ZSD_TRACKING_REPORT_CON_CDS.zsd_promo_b_cdsType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZSD_TRACKING_REPORT_CON" EntityType="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_E6A50C97BBDC62335C16B94EAD3A801C"
+					Association="ZSD_TRACKING_REPORT_CON_CDS.assoc_E6A50C97BBDC62335C16B94EAD3A801C" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZSD_TRACKING_REPORT_CON" Role="FromRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"/><End EntitySet="I_SalesOrganization" Role="ToRole_assoc_E6A50C97BBDC62335C16B94EAD3A801C"/></AssociationSet>
+				<AssociationSet Name="assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"
+					Association="ZSD_TRACKING_REPORT_CON_CDS.assoc_7E3B91D9034F5C432A0A8A9EA28E54A5" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZSD_TRACKING_REPORT_CON" Role="FromRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"/><End EntitySet="I_MaterialText" Role="ToRole_assoc_7E3B91D9034F5C432A0A8A9EA28E54A5"/></AssociationSet>
+				<AssociationSet Name="assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"
+					Association="ZSD_TRACKING_REPORT_CON_CDS.assoc_BB105557ABC20ED9C0200D2B7CF8D4DA" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZSD_TRACKING_REPORT_CON" Role="FromRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"/><End EntitySet="zsd_promo_b_cds" Role="ToRole_assoc_BB105557ABC20ED9C0200D2B7CF8D4DA"/></AssociationSet>
+				<AssociationSet Name="assoc_1075BFDFD8DC2F4E462754F132BE8405"
+					Association="ZSD_TRACKING_REPORT_CON_CDS.assoc_1075BFDFD8DC2F4E462754F132BE8405" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="ZSD_TRACKING_REPORT_CON" Role="FromRole_assoc_1075BFDFD8DC2F4E462754F132BE8405"/><End EntitySet="zsd_panel_b_cds" Role="ToRole_assoc_1075BFDFD8DC2F4E462754F132BE8405"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSD_TRACKING_REPORT_CON_CDS.I_SalesOrganizationType/CompanyCode">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Company Code"/><PropertyValue Property="CollectionPath" String="I_CompanyCodeStdVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="CompanyCode"/><PropertyValue Property="ValueListProperty" String="CompanyCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CompanyCodeName"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="ZSD_TRACKING_REPORT_CON_CDS.I_SalesOrganizationType/IntercompanyBillingCustomer">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Value Help for Customer"/><PropertyValue Property="CollectionPath" String="I_Customer_VH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="IntercompanyBillingCustomer"/><PropertyValue Property="ValueListProperty" String="Customer"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="OrganizationBPName1"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="OrganizationBPName2"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Country"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CityName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="StreetName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CustomerName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="CustomerAccountGroup"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="IsBusinessPurposeCompleted"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType/SalesOrganization">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Sales Organization"/><PropertyValue Property="CollectionPath" String="I_SalesOrganization"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrganization"/><PropertyValue Property="ValueListProperty" String="SalesOrganization"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="SalesOrganization_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CONType/Material">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Material Text"/><PropertyValue Property="CollectionPath" String="I_MaterialText"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Material"/><PropertyValue Property="ValueListProperty" String="Material"/></Record>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="MaterialName"/><PropertyValue Property="ValueListProperty" String="MaterialName"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Language"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CON_CDS_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="ZSD_TRACKING_REPORT_CON_CDS.ZSD_TRACKING_REPORT_CON_CDS_Entities/ZSD_TRACKING_REPORT_CON">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="SalesOrganization"/><PropertyValue Property="AllowedExpressions" String="SingleValue"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="Material"/><PropertyValue Property="AllowedExpressions" String="SingleValue"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZSD_TRACKING_REPORT_CON_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZSD_TRACKING_REPORT_CON_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
